@@ -1,0 +1,2 @@
+# mid-auth-service
+

@@ -1,0 +1,72 @@
+server:
+    #    address: 0.0.0.0
+    port: 19019
+spring:
+    jackson:
+        property-naming-strategy: SNAKE_CASE
+        default-property-inclusion: always
+    application:
+        name: '@project.artifactId@'
+        datasource:
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        hikari:
+            connection-timeout: 60000
+            maximum-pool-size: 10
+        password: ${ORC_ESB_PASS:user_esb12}
+        url: ${ORC_ESB_URL:jdbc:oracle:thin:@10.36.126.36:1521/EBDB}
+        username: ${ORC_ESB_USER:USER_ESB}
+    jpa:
+        hibernate:
+            ddl-auto: none
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.Oracle10gDialect
+    sleuth:
+        sampler:
+            probability: 1
+    zipkin:
+        base-url: ${ZIPKIN_SERVICE:http://10.36.126.15:9411/}
+eureka:
+    client:
+        fetchRegistry: true
+        registerWithEureka: true
+        registryFetchIntervalSeconds: 15
+        service-url:
+            defaultZone: ${EUREKA_REGISTRY_SERVICE:http://admin:123456@localhost:18001/eureka}
+    instance:
+        lease-expiration-duration-in-seconds: 5
+        lease-renewal-interval-in-seconds: 2
+        preferIpAddress: true
+info:
+    run:
+        dir: ${user.dir}
+        user: ${user.name}
+logging:
+    level:
+        org:
+            springframework:
+                data:
+                    mongodb:
+                        core:
+                            MongoTemplate: DEBUG
+                web: DEBUG
+                web.HttpLogging: INFO
+                web.filter.CommonsRequestLoggingFilter: DEBUG
+            hibernate:
+                SQL: DEBUG
+                type:
+                    descriptor:
+                        sql:
+                            BasicBinder: TRACE
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+ribbon:
+    eureka:
+        enabled: true
+configMM:
+    userName: partnerchain
+    password: d0ld/CyEbFrMJONbkC6FV0gU70kOjsHVOqPe00kyI9m+DKnklzon7dXlZHsBx8V4qG0QGILNEJahkCKFleHZnk0Ehr38yOQ/SHZhRku+DPNAmGXjWUGi2qDfPfdSRsfrATGdkwtSjsve3R9e1yyHiRe+3zwQHL9SI0TOLj1qMrk=
+

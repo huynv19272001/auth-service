@@ -1,0 +1,9 @@
+<DML_BODY_INFO>
+    <SERVICE_IO>
+        <SERVICE_ID>%s</SERVICE_ID>
+        <PRODUCT_CODE>%s</PRODUCT_CODE>
+    </SERVICE_IO>
+    <ADDL>
+        %s
+    </ADDL>
+</DML_BODY_INFO>

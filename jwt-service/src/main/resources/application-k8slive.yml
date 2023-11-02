@@ -1,0 +1,69 @@
+server:
+    #    address: 0.0.0.0
+    port: 19196
+spring:
+    application:
+        name: '@project.artifactId@'
+    sleuth:
+        sampler:
+            probability: 1
+    zipkin:
+        base-url: ${ZIPKIN_SERVICE:http://10.36.126.15:9411/}
+    datasource:
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        hikari:
+            connection-timeout: 60000
+            maximum-pool-size: 10
+        password: ${DB_ESB_PASS:esb@2018}
+        url: ${db_esb_url:jdbc:oracle:thin:@esbsg-scan:1521/esbsg.lienvietpostbank.com.vn}
+        username: ${DB_ESB_USER:USER_ESB}
+    jpa:
+        hibernate:
+            ddl-auto: none
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.Oracle10gDialect
+eureka:
+    client:
+        fetchRegistry: true
+        registerWithEureka: true
+        registryFetchIntervalSeconds: 15
+        service-url:
+            defaultZone: ${EUREKA_REGISTRY_SERVICE:http://admin:123456@localhost:18001/eureka}
+    instance:
+        lease-expiration-duration-in-seconds: 5
+        lease-renewal-interval-in-seconds: 2
+        preferIpAddress: true
+info:
+    run:
+        dir: ${user.dir}
+        user: ${user.name}
+logging:
+    level:
+        org:
+            springframework:
+                data:
+                    mongodb:
+                        core:
+                            MongoTemplate: DEBUG
+                web: DEBUG
+                web.HttpLogging: INFO
+                web.filter.CommonsRequestLoggingFilter: DEBUG
+            hibernate:
+#                SQL: DEBUG
+                type:
+                    descriptor:
+                        sql:
+                            BasicBinder: TRACE
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+ribbon:
+    eureka:
+        enabled: true
+configMM:
+    userName: partnerchain
+    password: 8z3HlaBtTtUIrU9NnMkir50aefeX3zPmjPV4PcDyMp0K/cPlKRrAsn5jCvkoZmQleg7fEqr+6QEU9B7zgd1BNEobYJklJy2eXVfdW0/iyV4rq/zgvxJlP9WPW5Ts8yDkXrEU0Qk9u5z6bj08HRbVLd53vZmmqy7jiDZ74feVTnk\u003d
+
